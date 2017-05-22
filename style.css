@@ -7,19 +7,53 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   color: #939598;
+  text-align: center;
 
 }
 
 h1 {
-  font-family: 'roboto-slab', Arial, sans-serif;
+  font-family: 'Roboto-Slab', Arial, sans-serif;
   color: #00A79D;
+  text-align: center;
 }
 h1>span {
   color: #6D6E71;
 }
 .idea-entry-section {
   background-color: #E5F3F2;
+  display: block;
+  height: 300px;
+  padding: 1% 5%;
+
+
+}
+input {
+  border: 1px solid #939598;
+}
+
+#idea-title,
+#idea-body {
+  margin-bottom: 3%;
+  padding: 5px;
+  width: 50%;
+}
+#save_btn {
+  border: none;
+  display: inline-block;
+  background-color: #00A79D;
+  color: #FFFFFF;
+  width: 50%;
+  margin: auto;
+}
+.search-form {
+  width: 100%;
+}
 
 
 
+
+
+.idea-stage {
+  width: 50%;
+  margin: auto;
 }
