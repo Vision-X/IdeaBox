@@ -57,7 +57,11 @@ input {
   margin: auto;
 }
 
-
+.delete-div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 
 
 
@@ -65,4 +69,19 @@ input {
   width: 50%;
   margin: 10px 28% auto;
   text-align: left;
+
+}
+
+.vote-and-quality {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.body-div {
+  margin: 10px 0;
+}
+
+hr {
+  
 }
