@@ -7,7 +7,10 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   color: #939598;
-  text-align: center;
+  /*text-align: center;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 
@@ -21,8 +24,11 @@ h1>span {
 }
 .idea-entry-section {
   background-color: #E5F3F2;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 250px;
+  width: 100%;
   padding: 1% 5%;
 
 
@@ -36,39 +42,45 @@ input {
 #idea-body {
   margin-bottom: 3%;
   padding: 5px;
-  width: 50%;
+  width: 70%;
 }
 #save_btn {
   border: none;
-  display: inline-block;
   background-color: #00A79D;
   color: #FFFFFF;
-  width: 50%;
+  width: 70%;
   margin: auto;
 }
 .search {
   height: 30px;
   width: 100%;
   margin-top: 20px;
+
 }
 .search-form {
   height: 5%;
-  width: 50%;
+  width: 70%;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .delete-div {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  width: 60%;
 }
 
-
-
 .idea-stage {
-  width: 50%;
-  margin: 10px 28% auto;
+  width: 100%;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
 
 }
 
@@ -83,5 +95,23 @@ input {
 }
 
 hr {
-  
+  margin: 10px;
+  border: 0;
+  height: 1px;
+  background-color: #D1D3D4;
+}
+.idea-stage button {
+  border: none;
+  background-color: transparent;
+  width: 15px;
+}
+.title-body-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.title-delete {
+  display: flex;
+  justify-content: space-between;
 }
