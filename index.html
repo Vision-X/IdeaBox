@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IdeaBox</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet">
+  </head>
+
+  <body>
+    <section class="idea-entry-section">
+      <h1>idea<span class="box">box</span></h1>
+
+      <section class="title-body-area">
+        <input type="text" name="idea-title" id="idea-title" placeholder="Title" />
+
+        <input type="text" name="idea-body" id="idea-body" />
+
+        <!-- <textarea rows="1" cols="" name="idea-body" id="idea-body" placeholder="Body" /> -->
+
+        <button type="submit" name="button">save</button>
+      </section>
+    </section>
+
+    <section class="search">
+      <form class="search-form">
+        <input type="search" name="search-ideas" placeholder="Search" />
+      </form>
+    </section>
+
+    <section class="idea-stage">
+      <h2>Example Idea 1</h2>
+      <button type="image" name="delete" id="delete" src="assets/delete.svg"></button>
+      <p>This is where someone's idea would be displayed... even if its flat out stupid. Actually, all the ideas in this area arent great (I promise)</p>
+        <div class="vote-and-quality">
+          <button type="image" name="upvote" id="upvote" src="assets/upvote.svg"></button>
+          <button type="image" name="downvote" id="downvote" src="assets/downvote.svg"></button>
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="script.js">
+    </script>
+  </body>
+</html>

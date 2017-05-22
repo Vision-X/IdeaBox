@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: #939598;
+
+}
+
+h1 {
+  font-family: 'roboto-slab', Arial, sans-serif;
+  color: #00A79D;
+}
+h1>span {
+  color: #6D6E71;
+}
+.idea-entry-section {
+  background-color: #E5F3F2;
+
+
+
+}
