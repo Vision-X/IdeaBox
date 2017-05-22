@@ -32,16 +32,22 @@
 
     <section class="idea-stage">
       <div class="delete-div">
-        <h2>Example Idea 1</h2>
-        <img type="image" name="delete" id="delete" height=20px src="assets/delete.svg">
-      </div>
+        <div class="title-delete">
+          <h2>Example Idea 1</h2>
+          <button class="deletebutton">
+            <img type="image" name="delete" id="delete" height=20px src="assets/delete.svg">
+          </button>
+        </div>
       <p class="body-div">This is where someone's idea would be displayed... even if its flat out stupid. Actually, all the ideas in this area arent great (I promise)</p>
         <div class="vote-and-quality">
-          <img type="image" name="upvote" id="upvote" height=20px src="assets/upvote.svg"></button>
-          <img type="image" name="downvote" id="downvote" height=20px src="assets/downvote.svg"></button>
+          <button class="upvote">
+            <img type="image" name="upvote" id="upvote" height=20px src="assets/upvote.svg"></button>
+          <button class="downvote">
+            <img type="image" name="downvote" id="downvote" height=20px src="assets/downvote.svg"></button>
           <p name="quality" id="quality">quality: swill</p>
-          <hr> </hr>
         </div>
+        <hr>
+      </div>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="script.js">
