@@ -74,6 +74,23 @@ input {
   width: 60%;
 }
 
+#delete {
+  /*background-image: url('assets/delete.svg')*/
+  height: 20px;
+}
+
+#delete:hover {
+  background-image: url('assets/delete-hover.svg')
+}
+
+#upvote {
+  height: 20px;
+}
+
+#downvote {
+  height: 20px;
+}
+
 .idea-stage {
   width: 100%;
   text-align: left;
