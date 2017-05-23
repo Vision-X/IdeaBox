@@ -3,10 +3,9 @@
 
 
 
-$('#save_btn').on('click', function() {
-    //++++++Check for accuracy+++++++
-  // event.preventDefault();
-//+++++++++++++++++++
+$('#save_btn').on('click', function(event) {
+  event.preventDefault();
+
   var title = $('#idea-title').val();
   var body = $('#idea-body').val();
 
@@ -15,6 +14,10 @@ $('#save_btn').on('click', function() {
 });
 
 $('.idea-stage').on('click', '.deletebutton', deleteCard);
+
+$('.idea-stage').on('click', '.upvote', upVote);
+
+$('.idea-stage').on('click', '.downvote', downVote);
 
 
 
@@ -26,12 +29,12 @@ function ideaCard() {
   var injection = `
     <div class="delete-div">
       <div class="title-delete">
-        <h2>${title}</h2>
+        <h2 contenteditable="true">${title}</h2>
         <button class="deletebutton">
           <img type="image" name="delete" id="delete"  src="assets/delete.svg">
         </button>
       </div>
-      <p class="body-div">${body}</p>
+      <p class="body-div" contenteditable="true">${body}</p>
       <div class="vote-and-quality">
         <button class="upvote">
           <img type="image" name="upvote" id="upvote" src="assets/upvote.svg"></button>
@@ -51,4 +54,12 @@ function clearInputs() {
 
 function deleteCard() {
   $(this).parent().parent().remove();
+};
+
+function upVote() {
+
+};
+
+function downVote() {
+
 };
