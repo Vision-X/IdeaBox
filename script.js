@@ -6,15 +6,16 @@
 $('#save_btn').on('click', function() {
     //++++++Check for accuracy+++++++
   // event.preventDefault();
-    //++++++++++++++++++++++++++++
+//+++++++++++++++++++
   var title = $('#idea-title').val();
   var body = $('#idea-body').val();
 
   ideaCard();
   clearInputs();
-
-
 });
+
+$('.idea-stage').on('click', '.deletebutton', deleteCard);
+
 
 
 function ideaCard() {
@@ -22,7 +23,8 @@ function ideaCard() {
   var title = $('#idea-title').val();
   var body = $('#idea-body').val();
 
-  var injection = `<div class="delete-div">
+  var injection = `
+    <div class="delete-div">
       <div class="title-delete">
         <h2>${title}</h2>
         <button class="deletebutton">
@@ -46,3 +48,7 @@ function clearInputs() {
   $('#idea-title').val('');
   $('#idea-body').val('');
 }
+
+function deleteCard() {
+
+};
