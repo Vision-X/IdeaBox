@@ -50,5 +50,5 @@ function clearInputs() {
 }
 
 function deleteCard() {
-
+  $(this).parent().parent().remove();
 };
