@@ -10,7 +10,6 @@ body {
   color: #939598;
   display: flex;
   flex-direction: column;
-
 }
 
 h1 {
@@ -91,33 +90,64 @@ h1 span {
   width: 60%;
 }
 
-#delete {
-  /*background-image: url('assets/delete.svg')*/
-  height: 20px;
-}
-
-#delete:hover {
-  background-image: url('assets/delete-hover.svg')
-}
-
 .idea-stage button {
   background-color: transparent;
   border: none;
-  width: 15px;
+}
+
+.deletebutton {
+  background-image: url('assets/delete.svg');
+  background-repeat: no-repeat;
+  width: 25px;
+}
+
+.deletebutton:hover {
+  background-image: url('assets/delete-hover.svg');
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.deletebutton:focus {
+  outline: none;
 }
 
 #upvote {
-  height: 20px;
+  background-image: url('assets/upvote.svg');
+  background-repeat: no-repeat;
+  width: 25px;
+}
+
+#upvote:hover {
+  background-image: url('assets/upvote-hover.svg');
+  background-repeat: no-repeat;
+  width: 25px;
+}
+
+#upvote:focus {
+  outline: none;
 }
 
 #downvote {
-  height: 20px;
+  background-image: url('assets/downvote.svg');
+  background-repeat: no-repeat;
+  width: 25px;
+}
+
+#downvote:hover {
+  background-image: url('assets/downvote-hover.svg');
+  background-repeat: no-repeat;
+  width: 25px;
+}
+
+#downvote:focus {
+  outline: none;
+  width: 25px;
 }
 
 .vote-and-quality {
   display: flex;
-  justify-content: space-between;
-  width: 40%;
+  justify-content: space-around;
+  width: 30%;
 }
 
 .body-div {

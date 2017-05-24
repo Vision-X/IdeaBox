@@ -1,6 +1,6 @@
 
-//NO page reload
-
+getIdeaFromStorage();
+var newIdeas = []
 
 
 $('#save_btn').on('click', function(event) {
@@ -13,6 +13,7 @@ $('#save_btn').on('click', function(event) {
 
   Idea();
   ideaCard();
+  // getKey();
   localStore();
   clearInputs();
 });
@@ -24,7 +25,20 @@ $('.idea-stage').on('click', '.upvote', upVote);
 $('.idea-stage').on('click', '.downvote', downVote);
 
 
+function getIdeaFromStorage() {
+  if (localStorage.getItem('card')) {
+      var storedItem = localStorage.getItem('card');
+      var parsedItem = JSON.parse(storedItem);
+      console.log('parsed items: ' + parsedItem);
 
+      parsedItem.forEach(function(item) {
+        var inputNode = //title and body from card
+
+        $('.idea-stage').append(parsedItem);
+
+      })
+  }
+}
 
 function Idea(title, body, id) {
 
@@ -45,22 +59,36 @@ function ideaCard() {
       <div class="title-delete">
         <h2 contenteditable="true">${title}</h2>
         <button class="deletebutton">
-          <img type="image" name="delete" id="delete"  src="assets/delete.svg">
         </button>
       </div>
       <p class="body-div" contenteditable="true">${body}</p>
       <div class="vote-and-quality">
-        <button class="upvote">
-          <img type="image" name="upvote" id="upvote" src="assets/upvote.svg"></button>
-        <button class="downvote">
-          <img type="image" name="downvote" id="downvote" src="assets/downvote.svg"></button>
-        <p name="quality" id="quality">qualities</p>
+        <button id="upvote">
+        </button>
+        <button id="downvote">
+        </button>
+        <p name="quality" id="quality">Quality: ${quality}</p>
       </div>
       <hr>
     </div>`;
 
 $('.idea-stage').prepend(injection);
-}
+};
+
+// function getKey(){
+//   JSON.stringify($('#idea-title').val())
+// }
+
+function localStore() {
+  var newObj = new Object();
+    newObj.title = $('#idea-title').val(),
+    newObj.body = $('#idea-body').val();
+    console.log(newObj);
+
+  newIdeas.push(newObj);
+
+  localStorage.setItem('card', JSON.stringify(newObj));
+};
 
 function clearInputs() {
   $('#idea-title').val('');
@@ -72,6 +100,14 @@ function deleteCard() {
   localRemove();
 };
 
+function localRemove() {
+
+};
+
+function localRetrieve() {
+
+}
+
 function upVote() {
 
 };
@@ -79,21 +115,3 @@ function upVote() {
 function downVote() {
 
 };
-
-function localStore() {
-  var newObj = new Object();
-    newObj.title = $('#idea-title').val(),
-    newObj.body = $('#idea-body').val();
-    console.log(newObj);
-
-  localStorage.setItem('Card', JSON.stringify(newObj));
-};
-
-function localRemove() {
-
-  localStorage.removeItem('Card');
-};
-
-function localRetrieve() {
-  localStorage.getItem('Card')
-}
