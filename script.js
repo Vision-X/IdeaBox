@@ -1,6 +1,7 @@
 
 getIdeaFromStorage();
-var newIdeas = []
+// altGetIdea();
+var newIdea = []
 
 
 $('#save_btn').on('click', function(event) {
@@ -14,7 +15,7 @@ $('#save_btn').on('click', function(event) {
   Idea();
   ideaCard();
   // getKey();
-  localStore();
+  // localStore();
   clearInputs();
 });
 
@@ -26,19 +27,33 @@ $('.idea-stage').on('click', '.downvote', downVote);
 
 
 function getIdeaFromStorage() {
-  if (localStorage.getItem('card')) {
-      var storedItem = localStorage.getItem('card');
-      var parsedItem = JSON.parse(storedItem);
-      console.log('parsed items: ' + parsedItem);
 
-      parsedItem.forEach(function(item) {
-        var inputNode = //title and body from card
+  if (localStorage.getItem($('#idea-title').val())) {
+      var storedItem = localStorage.getItem($('#idea-title').val());
+      newIdea = JSON.parse(storedItem);
+      console.log('parsed items: ' + newIdea);
 
-        $('.idea-stage').append(parsedItem);
+      newIdea.forEach(function(item) {
+        // var inputNode = //title and body from card
+
+        $('.idea-stage').append(inputNode);
 
       })
+  } else {
+    console.log('There is nothing locally stored');
   }
 }
+
+// function altGetIdea() {
+//
+//   var storedItem = localStorage.getItem('newIdea');
+//   newIdea = JSON.parse(storedItem);
+//   console.log('parsed items: ' + newIdea);
+//
+//   if (!newIdea) {
+//         newIdea = [];
+//       }
+// }
 
 function Idea(title, body, id) {
 
@@ -53,6 +68,7 @@ function ideaCard() {
   var title = $('#idea-title').val();
   var body = $('#idea-body').val();
   var id = Date.now();
+  console.log('id from ideaCard()' + id);
 
   var injection = `
     <div class="delete-div" id="${id}">
@@ -73,21 +89,24 @@ function ideaCard() {
     </div>`;
 
 $('.idea-stage').prepend(injection);
+localStore(id);
 };
 
 // function getKey(){
 //   JSON.stringify($('#idea-title').val())
 // }
 
-function localStore() {
+function localStore(id) {
   var newObj = new Object();
     newObj.title = $('#idea-title').val(),
     newObj.body = $('#idea-body').val();
     console.log(newObj);
 
-  newIdeas.push(newObj);
+  newIdea.push(newObj);
+  console.log('after push: ' + newIdea);
+  console.log('id from localStore()' + id);
 
-  localStorage.setItem('card', JSON.stringify(newObj));
+  localStorage.setItem(id, JSON.stringify(newObj));
 };
 
 function clearInputs() {
