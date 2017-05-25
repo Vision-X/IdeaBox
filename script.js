@@ -15,7 +15,7 @@ $('#save_btn').on('click', function(event) {
 
   Idea();
   ideaCard();
-  localStore();
+    // localStore();
   clearInputs();
 });
 
@@ -26,37 +26,25 @@ $('.idea-stage').on('click', '.upvote', upVote);
 $('.idea-stage').on('click', '.downvote', downVote);
 
 
-// function altGetIdea() {
-//
-//   var storedItem = localStorage.getItem('newIdea');
-//   newIdea = JSON.parse(storedItem);
-//   console.log('parsed items: ' + newIdea);
-//
-//   if (!newIdea) {
-//         newIdea = [];
-//       }
-// }
+
 
 function Idea(title, body) {
 
+  // this.id = Date.now();
   this.title = title
   this.body = body
-  this.id = Date.now();
   this.quality = 'swill'
 }
 
 function ideaCard(title, body) {
-  // var title = idea.title;
-  // var body = idea.body;
-  // var id = idea.id;
+
   var inputTitle = $('#idea-title').val() || title;
   var inputBody = $('#idea-body').val() || body;
-  // var id = Date.now();
-  // console.log('id from ideaCard(): ' + id);
   var newCard = new Idea(inputTitle, inputBody);
+  var id = Date.now()
 
   var injection = `
-    <div class="delete-div">
+    <div class="delete-div" id=${id}>
       <div class="title-delete">
         <h2 contenteditable="true">${inputTitle}</h2>
         <button class="deletebutton">
@@ -75,11 +63,12 @@ function ideaCard(title, body) {
 
 cardPlace.prepend(injection);
 newIdea.push(newCard);
+console.log(id);
+localStore(id);
 };
 
 function localStore() {
-
-  localStorage.setItem('newIdea', JSON.stringify(newIdea));
+  localStorage.setItem('arrayIs', JSON.stringify(newIdea));
 };
 
 function clearInputs() {
@@ -89,9 +78,9 @@ function clearInputs() {
 
 function getIdeaFromStorage() {
 
-  if (localStorage.getItem('newIdea')) {
-      var storedItem = JSON.parse(localStorage.getItem('newIdea'));
-      console.log('parsed items: ' + storedItem);
+  if (localStorage.getItem('arrayIs')) {
+      var storedItem = JSON.parse(localStorage.getItem('arrayIs'));
+      // console.log('parsed items: ' + storedItem);
 
       storedItem.forEach(function(item) {
         var inputNode = ideaCard(item.title, item.body);
@@ -107,11 +96,10 @@ function deleteCard() {
   localRemove();
 };
 
-function localRemove(id) {
-  var grabId = $(this).closest();
-  console.log(grabId)
+function localRemove() {
+  var grabId = $('.deletebutton').parent().parent().attr('id');
+  console.log(grabId);
   localStorage.removeItem(grabId);
-
 };
 
 function upVote() {
