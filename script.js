@@ -1,41 +1,76 @@
 
-
 var cardPlace = $('.idea-stage');
 var newIdea = [];
 
 getIdeaFromStorage();
+
+
+
 
 $('#save_btn').on('click', function(event) {
   event.preventDefault();
 
   var inputTitle = $('#idea-title').val();
   var inputBody = $('#idea-body').val();
-  // var id = Date.now();
   var idea = new Idea(inputTitle, inputBody);
 
   Idea();
   ideaCard();
   clearInputs();
+  enableEnterBtn();
 });
 
-$('.idea-stage').on('click', '.deletebutton', function(){
+$('#idea-title').on('keydown', function() {
+  enableEnterBtn();
+});
+
+$('#card-title').on('input keydown', function() {
+  var id = $(this).parents('.delete-div')[0].id;
+  var titleTxt = $('#card-title').text();
+    newIdea.forEach(function(item){
+      if (item.id == id) {
+        item.title = titleTxt;
+      }
+      })
+      localStore();
+    });
+
+$('.body-div').on('input keydown', function() {
+  var id = $(this).parents('.delete-div')[0].id;
+  var bodyTxt = $('.body-div').text();
+    newIdea.forEach(function(item){
+      if (item.id == id) {
+        item.body = bodyTxt;
+      }
+      })
+      localStore();
+    });
+
+$('.filter-cards').on('keyup', function() {
+    var filter = $(this).val();
+    if (filter) {
+    $('.delete-div').find("h2:not(:contains(" + filter + "))").closest('.delete-div').slideUp();
+    $('.delete-div').find("h2:contains(" + filter + ")").slideDown();
+  } else {
+    $('.delete-div').slideDown()
+  }
+});
+
+$('.idea-stage').on('click', '.deletebutton', function() {
   var id = $(this).parents('.delete-div')[0].id;
   console.log(id);
   newIdea.forEach(function(idea, index) {
     if (id == idea.id) {
       newIdea.splice(index, 1);
-      console.log('spliced array:' + newIdea);
     }
   })
   localStorage.setItem('arrayIs', JSON.stringify(newIdea));
-  console.log('stringified idea:' + newIdea);
   $(this).closest('.delete-div').remove();
   localStore();
-  deleteCard();
 });
 
-$('.idea-stage').on('click', '#upvote', function() {
-  var qualityInput = $('#vote');
+$('.delete-div').on('click', '#upvote', function() {
+  var qualityInput = $(this).parent().find('#vote');
   var id = $(this).parents('.delete-div')[0].id;
   arrayVoteUp(id, qualityInput.text());
 
@@ -46,7 +81,17 @@ $('.idea-stage').on('click', '#upvote', function() {
   }
 });
 
-$('.idea-stage').on('click', '#downvote', downVote);
+$('.delete-div').on('click', '#downvote', function() {
+  var qualityInput = $(this).parent().find('#vote');
+  var id = $(this).parents('.delete-div')[0].id;
+  arrayVoteDown(id, qualityInput.text());
+
+  if (qualityInput.text() === 'genius') {
+    qualityInput.text('plausible')
+  } else if (qualityInput.text() === 'plausible') {
+    qualityInput.text('swill')
+  }
+});
 
 
 
@@ -66,16 +111,15 @@ function ideaCard(title, body, id) {
   var newCard = new Idea(inputTitle, inputBody);
   var id = Date.now();
   var quality = 'swill';
-  console.log(quality);
 
   var injection = `
     <div class="delete-div" id=${id}>
       <div class="title-delete">
-        <h2 contenteditable="true">${inputTitle}</h2>
+        <h2 id="card-title" class="title-and-body" contenteditable="true">${inputTitle}</h2>
         <button class="deletebutton">
         </button>
       </div>
-      <p class="body-div" contenteditable="true">${inputBody}</p>
+      <p class="body-div title-and-body" contenteditable="true">${inputBody}</p>
       <div class="vote-and-quality">
         <div class="vote-buttons">
           <button id="upvote">
@@ -90,7 +134,7 @@ function ideaCard(title, body, id) {
 
   cardPlace.prepend(injection);
   newIdea.push(newCard);
-  console.log(id);
+  console.log("new card ID: " + id);
   localStore();
 };
 
@@ -117,38 +161,8 @@ function getIdeaFromStorage() {
   }
 }
 
-function deleteCard() {
-  $(this).closest('.delete-div').remove();
-};
-
-function upVote() {
-//   var qualityInput = $('#vote');
-//   //
-//   // var id = $(this).parents('.delete-div')[0].id;
-//   if (qualityInput.text() === 'swill') {
-//     qualityInput.text('plausible')
-//   } else if (qualityInput.text() === 'plausible') {
-//     qualityInput.text('genius')
-//   }
-// arrayVoteUp(id);
-};
-
-function downVote() {
-  var qualityInput = $('#vote');
-
-  var id = $(this).parents('.delete-div')[0].id;
-  if (qualityInput.text() === 'genius') {
-    qualityInput.text('plausible')
-  } else if (qualityInput.text() === 'plausible') {
-    qualityInput.text('swill')
-  }
-arrayVoteDown(id);
-};
-
 function arrayVoteUp(id, quality) {
-  // var id = $(this).parents('.delete-div')[0].id;
   console.log('id from arrayVoteUp(): ' + id);
-  console.log(quality);
   newIdea.forEach(function(idea){
     if (id == idea.id) {
       if (quality === 'swill') {
@@ -162,10 +176,9 @@ function arrayVoteUp(id, quality) {
 }
 
 function arrayVoteDown(id, quality) {
-  // var id = $(this).parents('.delete-div')[0].id;
   console.log('id from arrayVoteDown(): ' + id);
 
-  newIdea.forEach(function(id){
+  newIdea.forEach(function(idea){
     if (id == Idea.id) {
       if (quality.text() === 'genius') {
         quality.text('plausible')
@@ -175,3 +188,11 @@ function arrayVoteDown(id, quality) {
   })
   localStore();
 };
+
+function enableEnterBtn() {
+  if ($('#idea-title').val() !== '' && $('#idea.body').val() !== '') {
+    $('#save_btn').prop('disabled', false);
+  } else {
+      $('#save_btn').prop('disabled', true);
+  }
+}

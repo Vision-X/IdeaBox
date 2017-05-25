@@ -54,6 +54,14 @@ h1 span {
   width: 65%;
 }
 
+#save_btn:hover {
+  background-color: #045e55;
+}
+
+#save_btn:disabled {
+  background-color: #747474;
+}
+
 .search {
   height: 30px;
   margin-top: 20px;
