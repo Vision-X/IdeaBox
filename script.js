@@ -19,7 +19,21 @@ $('#save_btn').on('click', function(event) {
   clearInputs();
 });
 
-$('.idea-stage').on('click', '.deletebutton', deleteCard);
+$('.idea-stage').on('click', '.deletebutton', function(){
+  var id = $(this).parents('.delete-div')[0].id;
+  console.log(id);
+  newIdea.forEach(function(idea, index) {
+    if (id == idea.id) {
+      newIdea.splice(index, 1);
+      console.log('spliced array:' + newIdea);
+    }
+  })
+  localStorage.setItem('arrayIs', JSON.stringify(newIdea));
+  console.log('stringified idea:' + newIdea);
+  $(this).closest('.delete-div').remove();
+  localStore();
+  deleteCard();
+});
 
 $('.idea-stage').on('click', '.upvote', upVote);
 
@@ -28,20 +42,22 @@ $('.idea-stage').on('click', '.downvote', downVote);
 
 
 
-function Idea(title, body) {
+function Idea(title, body, id) {
 
-  // this.id = Date.now();
-  this.title = title
-  this.body = body
-  this.quality = 'swill'
+  this.id = Date.now();
+  this.title = title;
+  this.body = body;
+  this.quality = 'swill';
+  // console.log('idea(): ' + id);
 }
 
-function ideaCard(title, body) {
+function ideaCard(title, body, id) {
 
   var inputTitle = $('#idea-title').val() || title;
   var inputBody = $('#idea-body').val() || body;
   var newCard = new Idea(inputTitle, inputBody);
-  var id = Date.now()
+  var id = Date.now();
+  // console.log('ind ideaCard() :' + id);
 
   var injection = `
     <div class="delete-div" id=${id}>
@@ -64,7 +80,7 @@ function ideaCard(title, body) {
 cardPlace.prepend(injection);
 newIdea.push(newCard);
 console.log(id);
-localStore(id);
+localStore();
 };
 
 function localStore() {
@@ -93,13 +109,16 @@ function getIdeaFromStorage() {
 
 function deleteCard() {
   $(this).closest('.delete-div').remove();
-  localRemove();
+  // localRemove();
 };
 
 function localRemove() {
-  var grabId = $('.deletebutton').parent().parent().attr('id');
-  console.log(grabId);
-  localStorage.removeItem(grabId);
+  // var grabId = $('.deletebutton').parent().parent().attr('id');
+  // // console.log(
+  // // newIdea.forEach(function(graId){
+  // //
+  // // })
+  // localStorage.removeItem(grabId);
 };
 
 function upVote() {
