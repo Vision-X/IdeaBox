@@ -144,14 +144,24 @@ h1 span {
   width: 25px;
 }
 
-.vote-and-quality {
-  display: flex;
-  justify-content: space-around;
-  width: 30%;
-}
-
 .body-div {
   margin: 10px 0;
+}
+
+.vote-and-quality {
+  display: flex;
+  height: 25px;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.vote-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vote-buttons button {
+  margin: 0 10px;
 }
 
 hr {
