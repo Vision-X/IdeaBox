@@ -4,9 +4,6 @@ var newIdea = [];
 
 getIdeaFromStorage();
 
-
-
-
 $('#save_btn').on('click', function(event) {
   event.preventDefault();
 
@@ -71,8 +68,8 @@ $('.idea-stage').on('click', '.deletebutton', function() {
 
 $('.delete-div').on('click', '#upvote', function() {
   var qualityInput = $(this).parent().find('#vote');
-  var id = $(this).parents('.delete-div')[0].id;
-  arrayVoteUp(id, qualityInput.text());
+  // var id = $(this).parents('.delete-div')[0].id;
+  // arrayVoteUp(id, qualityInput.text());
 
   if (qualityInput.text() === 'swill') {
     qualityInput.text('plausible')
